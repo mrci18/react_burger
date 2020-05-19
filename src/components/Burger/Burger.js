@@ -13,17 +13,18 @@ const burger = (props) => {
     //performed on each element
         //takes prev value and curr val 
         //Not only call back but an initial value, lets say an array
-    let transformedIngredients = Object.keys(props.ingredients)
-    .map(igKey => {
-        return [...Array(props.ingredients[igKey])].map((_, i) => {
-            return <BurgerIngredient key={igKey + i} type={igKey}/>
-        });
-    }).reduce((arr, el) => {
-        return arr.concat(el)
-    }, []);
+    // let transformedIngredients = <p>Please add ingredients</p>
 
-    if ( transformedIngredients.length === 0) {
-        transformedIngredients = <p>Please add ingredients</p>
+    let transformedIngredients = Object.keys( props.ingredients ).map( igKey => {
+            return [...Array( props.ingredients[igKey] )].map( ( _, i ) => {
+                return <BurgerIngredient key={igKey + i} type={igKey} />;
+            } );
+        } )
+        .reduce((arr, el) => {
+            return arr.concat(el)
+        }, []);
+    if (transformedIngredients.length === 0) {
+        transformedIngredients = <p>Please start adding ingredients!</p>;
     }
 
     return (
